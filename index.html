@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Resume</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+   <!-- Sound Warning -->
+   <div id="sound-warning">Sound playback is blocked by your browser. Please enable sound or interact with the page to allow audio.</div>
+   <div id="landing-page" class="page">
+    <div class="code-container">
+        <div class="logo"><img  class="logo" src="img/logo_zer0s.gif"></div>
+        <label for="code-input"> <a href="#" class="tooltip-container">
+            <i class="fa-solid fa-circle-info" style="margin-right: 5px; opacity: 50%;"></i>
+            <span class="tooltip">A 4-digit pin, keep watching.</span>
+        </a>
+    Enter Pin:</label>
+    <input type="password" id="code-input" maxlength="4" autofocus>
+</div>
+</div>
+<div id="wrong-page" class="page hidden red">
+    <p>WRONG CODE</p>
+</div>
+
+<div id="main-content" class="page hidden">
+
+    <div class="zer0s-container">
+        <div class="zer0s-eye">
+            <div class="mechanical-lines"></div>
+            <div class="eye-glow"></div>
+            <div class="red-dot"></div>
+        </div>
+        <audio id="audio" src="audio/zer0s_menu.mp3"></audio>
+    </div>
+
+
+    
+</div>
+<footer>
+    <div id="current-time-display">Zer0S - v1 // Local Time: --:--</div>
+</footer>
+<script src="js/zer0s_ai.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>

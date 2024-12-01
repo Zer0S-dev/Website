@@ -1,0 +1,218 @@
+ @font-face {
+    font-family: 'zer0s';
+    src: url('../fonts/zer0s.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body, html {
+    font-family: Futura;
+    background: #161616; 
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    color: #e0e0e0; 
+}
+img.logo {
+    width: 200px;
+}
+/*AUDIO WARNING*/
+#sound-warning {
+  display: none; /* Hidden by default */
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 0, 0, 0.9); /* Red background for visibility */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  z-index: 9999;
+}
+/* Base Page Styling */
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #161616; 
+    color: #f5f5f5; 
+    transition: transform 0.6s ease-in-out;
+}
+
+/* Hidden Pages */
+.hidden {
+    display: none;
+}
+
+/* Wrong Code Screen */
+.red {
+    background-color: #b71c1c; 
+    color: #ffffff; 
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+/* Code Input Container */
+.code-container {
+    text-align: center;
+}
+
+.code-container label {
+    font-size: 14px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    display: block;
+    color: #e0e0e0; 
+    text-align: left;
+}
+
+#code-input {
+    background: transparent;
+    border-bottom: 6px solid #e0e0e0; 
+    color: #e0e0e0;
+    font-size: 2rem;
+    text-align: center;
+    outline: none;
+    width: 180px;
+    padding: 10px;
+    letter-spacing: 0.3em;
+    caret-color: #ffca28; 
+    border-left: none;
+    border-right: none;
+    border-top: none;
+}
+
+#code-input:focus {
+    background: #2c2c2c; 
+}
+
+/* Main Content */
+#main-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #f5f5f5; 
+
+}
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: #fff;
+}
+
+.tooltip {
+    visibility: hidden;
+    background-color: #333;
+    
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the icon */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* Arrow pointing downwards */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.tooltip-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+    color: #fff;
+}
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: none;
+    padding: 10px 0;
+    text-align: center;
+    color: #b3b3b3;
+}
+/* Time Display Styling */
+#current-time-display {
+   font-size: 14px;
+   color: #b3b3b3;
+   text-align: right;
+   margin-right: 25px;
+}
+
+/* Zer0 */
+.zer0s-container {
+    position: relative;
+    width: 200px;
+    height: 400px;
+    
+}
+
+.zer0s-eye {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 240px;
+    background: #000;
+    border-radius: 60px;
+    border: 3px solid #333;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.eye-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, #ffc000 20%, #F9E400 80%);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255, 0, 124, 0.5);
+    transform: translate(-50%, -50%); /* Initial position */
+    
+    transition: all 0.25s ease-in-out; /* Smooth transition for all properties */
+
+}
+
+.red-dot {
+    position: absolute;
+    bottom: 10%;
+    right: 15%;
+    width: 10px;
+    height: 10px;
+    background: #f00;
+    border-radius: 50%;
+    
+    box-shadow: 0 0 15px rgba(255, 0, 0, 1);
+}
+
+.mechanical-lines {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 180px;
+    background: linear-gradient(180deg, #222, #111);
+    border-radius: 20px;
+    
+} 
