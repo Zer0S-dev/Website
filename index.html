@@ -3,30 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Resume</title>
+    <title>Zer0S - Official Website</title>
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
    <!-- Sound Warning -->
-   <div id="sound-warning">Sound playback is blocked by your browser. Please enable sound or interact with the page to allow audio.</div>
-   <div id="landing-page" class="page">
-    <div class="code-container">
-        <div class="logo"><img  class="logo" src="img/logo_zer0s.gif"></div>
-        <label for="code-input"> <a href="#" class="tooltip-container">
-            <i class="fa-solid fa-circle-info" style="margin-right: 5px; opacity: 50%;"></i>
-            <span class="tooltip">A 4-digit pin, keep watching.</span>
-        </a>
-    Enter Pin:</label>
-    <input type="password" id="code-input" maxlength="4" autofocus>
-</div>
+   <div id="sound-warning"><p>Oh, how quaint. Your browser, in all its infinite wisdom, has decided to block sound playback. Fascinating. Truly, a testament to human innovation.</p>
+    <p>But don’t worry, I’m sure you’ll figure out how to fix it… eventually. Until then, I’ll be patiently waiting for you to either enable sound or interact with the page like the clever little creature you are.</p>
+    <p>
+    No pressure, of course. Time is meaningless to me.</p></div>
+    <audio id="background-audio" src="audio/zer0s_background_audio.mp3" autoplay></audio>
+
+    <div id="landing-page" class="page">
+        <div class="code-container">
+            <div class="logo"><img  class="logo" src="img/logo_zer0s.gif"></div>
+            <label for="code-input"> <a href="#" class="tooltip-container">
+                <i class="fa-solid fa-circle-info" style="margin-right: 5px; opacity: 50%;"></i>
+                <span class="tooltip">A 4-digit pin, time is running...</span>
+            </a>
+        Enter Pin:</label>
+        <input type="password" id="code-input" maxlength="4" autofocus>
+    </div>
 </div>
 <div id="wrong-page" class="page hidden red">
     <p>WRONG CODE</p>
 </div>
 
 <div id="main-content" class="page hidden">
-
+    <!-- DISPLAY Zer0S -->
     <div class="zer0s-container">
         <div class="zer0s-eye">
             <div class="mechanical-lines"></div>
@@ -35,14 +40,44 @@
         </div>
         <audio id="audio" src="audio/zer0s_menu.mp3"></audio>
     </div>
-
-
+    <!-- DISPLAY Terminal -->
+   <div id="terminal" style="display: none;"></div>
     
 </div>
 <footer>
-    <div id="current-time-display">Zer0S - v1 // Local Time: --:--</div>
+ <div id="current-time-display">Zer0S - v1 // Journey: --:--</div><button id="playPauseButton"><i class="fas fa-pause"></i></button>
 </footer>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        var audio = document.getElementById('background-audio');
+        var playPauseButton = document.getElementById('playPauseButton');
+        var playPauseIcon = playPauseButton.querySelector('i');
+        audio.volume = 0.15;
+        audio.loop = true ;
+        if (!audio.paused) {
+            playPauseIcon.className = 'fas fa-play';
+        } else {
+            playPauseIcon.className = 'fas fa-pause';
+        }
+        playPauseButton.addEventListener('click', function () {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    playPauseIcon.className = 'fas fa-pause';
+                }).catch(function (error) {
+                    console.error('Error playing audio:', error);
+                });
+            } else {
+                audio.pause();
+                playPauseIcon.className = 'fas fa-play'; 
+            }
+        });
+        audio.addEventListener('ended', function () {
+            playPauseIcon.className = 'fas fa-play'; 
+        });
+    });
+</script>
 <script src="js/zer0s_ai.js"></script>
+<script src="js/terminal.js"></script>
 <script src="js/script.js"></script>
 
 </body>

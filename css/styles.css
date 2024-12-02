@@ -6,7 +6,7 @@
 }
 body, html {
     font-family: Futura;
-    background: #161616; 
+    background: #212121; 
     margin: 0;
     padding: 0;
     height: 100%;
@@ -20,7 +20,7 @@ img.logo {
 #sound-warning {
   display: none; /* Hidden by default */
   position: fixed;
-  bottom: 20px;
+  border-top: 20px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(255, 0, 0, 0.9); /* Red background for visibility */
@@ -29,6 +29,7 @@ img.logo {
   border-radius: 5px;
   font-size: 16px;
   z-index: 9999;
+  top: 50vh;
 }
 /* Base Page Styling */
 .page {
@@ -38,9 +39,10 @@ img.logo {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #161616; 
+    background-color: #212121; 
     color: #f5f5f5; 
     transition: transform 0.6s ease-in-out;
+    flex-direction: column;
 }
 
 /* Hidden Pages */
@@ -58,7 +60,11 @@ img.logo {
 
 /* Code Input Container */
 .code-container {
-    text-align: center;
+   text-align: center;
+   background: #2f2f2f;
+   padding: 25px;
+   border-radius: 12px;
+
 }
 
 .code-container label {
@@ -97,7 +103,46 @@ img.logo {
     color: #f5f5f5; 
 
 }
+/* Terminal  */
+#terminal {
+border-radius: 12px;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 20px;
+    height: 400px;
+    width: 800px;
+    background: #0C0C0C;
+    color: white;
+    opacity: 0;
+    position: relative;
+    bottom: -100%;
+    overflow-y: auto;
+    transition: bottom 3s ease, opacity 1s ease;
+    border: 1px solid #333;
+}
 
+#terminal.visible {
+  bottom: 20px; /* Final position visible on the screen */
+  opacity: 1;
+}
+.output {
+    margin-bottom: 5px;
+}
+.input-line {
+    display: flex;
+}
+.input-line span {
+    color: #00FF9C;
+}
+.input-line input {
+    background: none;
+    border: none;
+    color: #fff;
+    outline: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    width: 70%;
+}
+/* Tooltip  */
 .tooltip-container {
     position: relative;
     display: inline-block;
@@ -149,15 +194,23 @@ footer {
     text-align: center;
     color: #b3b3b3;
 }
-/* Time Display Styling */
 #current-time-display {
-   font-size: 14px;
-   color: #b3b3b3;
-   text-align: right;
-   margin-right: 25px;
+  font-size: 14px;
+  color: #b3b3b3;
+  text-align: right;
+  margin-right: 25px;
+  width: 310px;
+  float: right;
 }
-
-/* Zer0 */
+button#playPauseButton {
+ float: right;
+ display: block;
+ position: relative;
+ background: none;
+ border: 2px solid #b3b3b3;
+ color: #b3b3b3;
+}
+/* Zer0S */
 .zer0s-container {
     position: relative;
     width: 200px;
@@ -201,10 +254,25 @@ footer {
     height: 10px;
     background: #f00;
     border-radius: 50%;
-    
-    box-shadow: 0 0 15px rgba(255, 0, 0, 1);
+    box-shadow: 0 0 20px 2px rgba(255, 0, 0, 0.3);
+    animation: pulse 3s infinite ease-in-out;
 }
 
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 20px 2px rgba(255, 0, 0, 0.3);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px 9px rgba(255, 0, 0, 0.5);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px 5px rgba(255, 0, 0, 0.7);
+
+    }
+}
 .mechanical-lines {
     position: absolute;
     top: 50%;
@@ -212,7 +280,7 @@ footer {
     transform: translate(-50%, -50%);
     width: 80px;
     height: 180px;
-    background: linear-gradient(180deg, #222, #111);
+    background: linear-gradient(180deg, #19191b, #18181a);
     border-radius: 20px;
-    
+    box-shadow: rgb(0, 0, 0, 0.5) 3px 3px 6px 0px inset, rgba(0, 0, 0, 0.2) -3px -3px 6px 1px inset;
 } 

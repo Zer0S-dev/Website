@@ -7,6 +7,8 @@ const wrongSound = new Audio('audio/wrong_code.mp3'); // Audio for wrong code
 const welcomeSound = new Audio('audio/welcome.mp3'); // Audio for welcome
 const zer0sMenuSound = document.getElementById('audio'); // Main menu audio
 const soundWarning = document.getElementById('sound-warning'); // Sound warning element
+const soundWarningBlur = document.getElementById('landing-page'); // Sound warning element
+const terminalB = document.getElementById('terminal');
 let currentAudio = null; // Initially no audio playing
 let welcomePlayed = false; // Track whether welcome.mp3 has already played
 
@@ -29,6 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
         welcomeSound.play().catch((err) => {
             console.warn("Audio autoplay blocked by browser:", err);
             soundWarning.style.display = 'block'; // Show the sound warning message
+            soundWarningBlur.style.filter = 'blur(20px)'; // Show the sound warning message
         });
         welcomePlayed = true; // Mark welcome as played
         currentAudio = welcomeSound; // Track the welcome sound
@@ -57,7 +60,7 @@ function getCurrentTimeCode() {
 function updateTime() {
     const { code, display } = getCurrentTimeCode();
     correctCode = code;
-    timeDisplay.textContent = `Zer0S - v1 // Time Log: ${display}`;
+    timeDisplay.textContent = `Zer0S - v1 // Journey Log: ${display}`;
 }
 
 // Automatically fetch the correct code and update the display
@@ -96,7 +99,15 @@ function handleCorrectCode() {
             });
             currentAudio = zer0sMenuSound; // Track zer0s menu audio
             setupAudio(zer0sMenuSound); // Set up event listener for when the audio ends
-        }
+ // Show terminal after the zer0sMenuSound ends
+            zer0sMenuSound.addEventListener('ended', () => {
+                terminalB.style.display = "block"; // Ensure it's visible
+                setTimeout(() => {
+                    terminalB.classList.add("visible"); // Trigger the slide-in animation
+                }, 10); // Short delay to trigger CSS transition
+            });
+         }
+         
     }, 600); // Matches the CSS transition time
 }
 
