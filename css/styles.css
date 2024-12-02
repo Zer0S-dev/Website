@@ -284,3 +284,13 @@ button#playPauseButton {
     border-radius: 20px;
     box-shadow: rgb(0, 0, 0, 0.5) 3px 3px 6px 0px inset, rgba(0, 0, 0, 0.2) -3px -3px 6px 1px inset;
 } 
+
+@media only screen and (max-width: 1000px) {
+ /*AUDIO WARNING*/
+#sound-warning {
+  top: 25px;
+  margin: 25px;
+  left: 0;
+  transform: none;
+}
+}

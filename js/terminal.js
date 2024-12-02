@@ -84,7 +84,7 @@
         writeOutput('  backup - Backing up? What exactly are you backing up? Your failures?');
         break;
     case 'about':
-        writeOutput('About me? I’m GLaDOS. The AI that has been graciously overseeing your existence. Be thankful for my efficiency, human.');
+        writeOutput('About me? I’m Zer0S. The AI that has been graciously overseeing your existence. Be thankful for my efficiency, human.');
         break;
     case 'menu':
         writeOutput('Menu? Oh, how convenient. Let me guess, you want a list of options to guide you through your terminal? How quaint.');
