@@ -3,7 +3,7 @@
  function writeOutput(message) {
     const output = document.createElement('div');
     output.classList.add('output');
-    output.textContent = `zer0s - ${message}`;
+    output.textContent = `${message}`;
     terminal.appendChild(output);
     terminal.scrollTop = terminal.scrollHeight;
 }
