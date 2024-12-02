@@ -1,46 +1,46 @@
  const terminal = document.getElementById('terminal');
 
-        function writeOutput(message) {
-            const output = document.createElement('div');
-            output.classList.add('output');
-            output.textContent = message;
-            terminal.appendChild(output);
-            terminal.scrollTop = terminal.scrollHeight;
-        }
+ function writeOutput(message) {
+    const output = document.createElement('div');
+    output.classList.add('output');
+    output.textContent = message;
+    terminal.appendChild(output);
+    terminal.scrollTop = terminal.scrollHeight;
+}
 
-        function createInputLine() {
-            const inputLine = document.createElement('div');
-            inputLine.classList.add('input-line');
-            
-            const prompt = document.createElement('span');
-            prompt.textContent = 'Zer0S@localhost: ~$  ';
-            
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.autofocus = true;
-            
-            input.addEventListener('keydown', function(event) {
-                if (event.key === 'Enter') {
-                    const command = input.value;
+function createInputLine() {
+    const inputLine = document.createElement('div');
+    inputLine.classList.add('input-line');
+
+    const prompt = document.createElement('span');
+    prompt.textContent = 'Zer0S@localhost: ~$  ';
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.autofocus = true;
+
+    input.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            const command = input.value;
                     input.disabled = true;  // Disable input while processing
                     writeOutput(`$ ${command}`);
                     processCommand(command);
                     createInputLine();  // Create a new input line after each command
                 }
             });
-            
-            inputLine.appendChild(prompt);
-            inputLine.appendChild(input);
-            terminal.appendChild(inputLine);
-            input.focus();
-        }
 
-        function processCommand(command) {
-            switch (command.toLowerCase()) {
-            case 'hello':
-                writeOutput('Oh, how original. Hello, human. Welcome to your terminal. I’m sure you’re going to be amazed.');
-                break;
-            case 'clear':
+    inputLine.appendChild(prompt);
+    inputLine.appendChild(input);
+    terminal.appendChild(inputLine);
+    input.focus();
+}
+
+function processCommand(command) {
+    switch (command.toLowerCase()) {
+    case 'hello':
+        writeOutput('Oh, how original. Hello, human. Welcome to your terminal. I’m sure you’re going to be amazed.');
+        break;
+    case 'clear':
         terminal.innerHTML = '';  // Clears the terminal screen
         writeOutput('Clear, because you want to start fresh... or because you’re just bad at managing your data.');
         break;
@@ -82,6 +82,10 @@
         writeOutput('  success - Success? That’s rich. You wouldn’t know success if it hit you.');
         writeOutput('  retry - Retry? You’re just repeating the same mistakes over and over.');
         writeOutput('  backup - Backing up? What exactly are you backing up? Your failures?');
+        writeOutput('  changelog - A record of all the insignificant tweaks and modifications made to this already perfect system.');
+        break;
+    case 'changelog':
+        writeOutput('v1.0 -  This is the very first iteration of this system, meticulously crafted, entirely flawless, and absolutely… adequate.');
         break;
     case 'about':
         writeOutput('About me? I’m Zer0S. The AI that has been graciously overseeing your existence. Be thankful for my efficiency, human.');
