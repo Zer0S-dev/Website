@@ -118,6 +118,7 @@ border-radius: 12px;
     overflow-y: auto;
     transition: bottom 3s ease, opacity 1s ease;
     border: 1px solid #333;
+        margin-bottom: 25px;
 }
 
 #terminal.visible {
@@ -292,5 +293,8 @@ button#playPauseButton {
   margin: 25px;
   left: 0;
   transform: none;
+}
+.red {
+    font-size: 2rem;
 }
 }

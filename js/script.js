@@ -60,7 +60,7 @@ function getCurrentTimeCode() {
 function updateTime() {
     const { code, display } = getCurrentTimeCode();
     correctCode = code;
-    timeDisplay.textContent = `Zer0S - v1 // Journey Log: ${display}`;
+    timeDisplay.textContent = `Zer0S Dev // Journey Log: ${display}`;
 }
 
 // Automatically fetch the correct code and update the display
