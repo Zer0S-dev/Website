@@ -4,8 +4,14 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Futura';
+    src: url('../fonts/futura.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 body, html {
-    font-family: Futura;
+    font-family: 'Futura';
     background: #212121; 
     margin: 0;
     padding: 0;
