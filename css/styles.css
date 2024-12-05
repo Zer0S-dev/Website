@@ -22,20 +22,43 @@ body, html {
 img.logo {
     width: 200px;
 }
-/*AUDIO WARNING*/
-#sound-warning {
-  display: none; /* Hidden by default */
-  position: fixed;
-  border-top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 0, 0, 0.9); /* Red background for visibility */
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 16px;
-  z-index: 9999;
-  top: 50vh;
+/*ENTER PAGE*/
+#enter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0C0C0C;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 2s ease, visibility 1s ease;
+}
+
+#enter-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#enter-button {
+  padding: 10px;
+    background: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background 0.3s;
+    border-bottom: 5px solid #ffca28;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+#enter-button:hover {
+   background: #2c2c2c; 
 }
 /* Base Page Styling */
 .page {
@@ -66,10 +89,10 @@ img.logo {
 
 /* Code Input Container */
 .code-container {
-   text-align: center;
-   background: #2f2f2f;
-   padding: 25px;
-   border-radius: 12px;
+ text-align: center;
+ background: #2f2f2f;
+ padding: 25px;
+ border-radius: 12px;
 
 }
 
@@ -84,7 +107,7 @@ img.logo {
 
 #code-input {
     background: transparent;
-    border-bottom: 6px solid #e0e0e0; 
+    border-bottom: 6px solid #ffca28; 
     color: #e0e0e0;
     font-size: 2rem;
     text-align: center;
@@ -111,7 +134,7 @@ img.logo {
 }
 /* Terminal  */
 #terminal {
-border-radius: 12px;
+    border-radius: 12px;
     font-family: 'Courier New', Courier, monospace;
     padding: 20px;
     height: 400px;
@@ -124,7 +147,7 @@ border-radius: 12px;
     overflow-y: auto;
     transition: bottom 3s ease, opacity 1s ease;
     border: 1px solid #333;
-        margin-bottom: 25px;
+    margin-bottom: 25px;
 }
 
 #terminal.visible {
@@ -210,12 +233,12 @@ footer {
   float: right;
 }
 button#playPauseButton {
- float: right;
- display: block;
- position: relative;
- background: none;
- border: 2px solid #b3b3b3;
- color: #b3b3b3;
+   float: right;
+   display: block;
+   position: relative;
+   background: none;
+   border: 2px solid #b3b3b3;
+   color: #b3b3b3;
 }
 /* Zer0S */
 .zer0s-container {
@@ -306,14 +329,14 @@ button#playPauseButton {
 } 
 
 @media only screen and (max-width: 1000px) {
- /*AUDIO WARNING*/
-#sound-warning {
-  top: 25px;
-  margin: 25px;
-  left: 0;
-  transform: none;
-}
-.red {
+   /*AUDIO WARNING*/
+   #sound-warning {
+      top: 25px;
+      margin: 25px;
+      left: 0;
+      transform: none;
+  }
+  .red {
     font-size: 2rem;
 }
 }

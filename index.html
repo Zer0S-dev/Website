@@ -27,11 +27,10 @@
  ***##              ***##      %#********#%       ****              %#**     *#%       ##***        **#%  
 %%%%%%%%%%%%%%%%%%%%%%%%         %%####%%      #%%%%%%%%#              %#**#%          %   %%%#***#%%%    
 -->
-   <!-- Sound Warning -->
-   <div id="sound-warning"><p>Oh, how quaint. Your browser, in all its infinite wisdom, has decided to block sound playback. Fascinating. Truly, a testament to human innovation.</p>
-    <p>But don’t worry, I’m sure you’ll figure out how to fix it… eventually. Until then, I’ll be patiently waiting for you to either enable sound or interact with the page like the clever little creature you are.</p>
-    <p>
-    No pressure, of course. Time is meaningless to me.</p></div>
+   
+    <div id="enter-overlay">
+        <button id="enter-button">Enter</button>
+    </div>
     <audio id="background-audio" src="audio/zer0s_background_audio.mp3" autoplay></audio>
 
     <div id="landing-page" class="page">
@@ -67,33 +66,42 @@
  <div id="current-time-display">Zer0S // Journey: --:--</div><button id="playPauseButton"><i class="fas fa-pause"></i></button>
 </footer>
 <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function () {
-        var audio = document.getElementById('background-audio');
-        var playPauseButton = document.getElementById('playPauseButton');
-        var playPauseIcon = playPauseButton.querySelector('i');
-        audio.volume = 0.15;
-        audio.loop = true ;
-        if (!audio.paused) {
-            playPauseIcon.className = 'fas fa-pause';
-        } else {
-            playPauseIcon.className = 'fas fa-pause';
-        }
-        playPauseButton.addEventListener('click', function () {
-            if (audio.paused) {
-                audio.play().then(() => {
-                    playPauseIcon.className = 'fas fa-pause';
-                }).catch(function (error) {
+       document.addEventListener('DOMContentLoaded', function () {
+            var enterButton = document.getElementById('enter-button');
+            var enterOverlay = document.getElementById('enter-overlay');
+            var backgroundAudio = document.getElementById('background-audio');
+
+            // Set audio volume
+            backgroundAudio.volume = 0.10;
+
+            // Handle Enter button click
+            enterButton.addEventListener('click', function () {
+                enterOverlay.classList.add('hidden');
+                backgroundAudio.play().catch(function (error) {
                     console.error('Error playing audio:', error);
                 });
-            } else {
-                audio.pause();
-                playPauseIcon.className = 'fas fa-play'; 
-            }
+            });
+
+            var playPauseButton = document.getElementById('playPauseButton');
+            var playPauseIcon = playPauseButton.querySelector('i');
+
+            playPauseButton.addEventListener('click', function () {
+                if (backgroundAudio.paused) {
+                    backgroundAudio.play().then(() => {
+                        playPauseIcon.className = 'fas fa-pause';
+                    }).catch(function (error) {
+                        console.error('Error playing audio:', error);
+                    });
+                } else {
+                    backgroundAudio.pause();
+                    playPauseIcon.className = 'fas fa-play';
+                }
+            });
+
+            backgroundAudio.addEventListener('ended', function () {
+                playPauseIcon.className = 'fas fa-play';
+            });
         });
-        audio.addEventListener('ended', function () {
-            playPauseIcon.className = 'fas fa-play'; 
-        });
-    });
 </script>
 <script src="js/zer0s_ai.js"></script>
 <script src="js/terminal.js"></script>

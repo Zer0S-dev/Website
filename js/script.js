@@ -3,56 +3,55 @@ const landingPage = document.getElementById('landing-page');
 const wrongPage = document.getElementById('wrong-page');
 const mainContent = document.getElementById('main-content');
 const timeDisplay = document.getElementById('current-time-display');
-const wrongSound = new Audio('audio/wrong_code.mp3'); // Audio for wrong code
-const welcomeSound = new Audio('audio/welcome.mp3'); // Audio for welcome
-const zer0sMenuSound = document.getElementById('audio'); // Main menu audio
-const soundWarning = document.getElementById('sound-warning'); // Sound warning element
-const soundWarningBlur = document.getElementById('landing-page'); // Sound warning element
+const wrongSound = new Audio('audio/wrong_code.mp3');
+const welcomeSound = new Audio('audio/welcome.mp3');
+const zer0sMenuSound = document.getElementById('audio');
+const soundWarning = document.getElementById('sound-warning');
 const terminalB = document.getElementById('terminal');
-let currentAudio = null; // Initially no audio playing
-let welcomePlayed = false; // Track whether welcome.mp3 has already played
+const enterButton = document.getElementById('enter-button');
 
-// Function to check if audio is already playing
+let currentAudio = null;
+let welcomePlayed = false;
+
+// Helper: Check if an audio is currently playing
 function isAudioPlaying(audio) {
     return !audio.paused;
 }
 
-// Event listener to reset the audio when it ends
+// Helper: Setup audio to reset `currentAudio` when it ends
 function setupAudio(audio) {
     audio.addEventListener('ended', () => {
-        currentAudio = null; // Reset the current audio when it finishes
+        currentAudio = null;
     });
 }
 
-// Play the welcome sound on page load if not already played
-window.addEventListener('DOMContentLoaded', () => {
+// Play the welcome sound only on Enter button click
+enterButton.addEventListener('click', () => {
     if (!welcomePlayed) {
-        welcomeSound.loop = false; // Loop the welcome sound for a seamless experience
-        welcomeSound.play().catch((err) => {
-            console.warn("Audio autoplay blocked by browser:", err);
-            soundWarning.style.display = 'block'; // Show the sound warning message
-            soundWarningBlur.style.filter = 'blur(20px)'; // Show the sound warning message
-        });
-        welcomePlayed = true; // Mark welcome as played
-        currentAudio = welcomeSound; // Track the welcome sound
-        setupAudio(welcomeSound); // Set up event listener for when the audio ends
+        welcomeSound.play()
+            .then(() => {
+                welcomePlayed = true;
+                currentAudio = welcomeSound;
+                setupAudio(welcomeSound);
+            })
+            .catch((error) => console.error('Error playing welcome audio:', error));
     }
 });
 
-// Function to get the current time and date as a 4-digit code and display format
+// Function to get the current time and date as a 4-digit code
 function getCurrentTimeCode() {
     const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0'); // 2 digits
-    const minutes = String(now.getMinutes()).padStart(2, '0'); // 2 digits
-    const day = String(now.getDate()).padStart(2, '0'); // 2 digits
-    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
     const year = now.getFullYear();
 
-    const dateDisplay = `${month}/${day}/${year}`; // Format as MM/DD/YYYY
-    const timeDisplay = `${hours}:${minutes}`; // Format as HH:MM
-    return { 
-        code: hours + minutes, // 4-digit code
-        display: `${dateDisplay} ${timeDisplay}` // Combined date and time
+    const dateDisplay = `${month}/${day}/${year}`;
+    const timeDisplay = `${hours}:${minutes}`;
+    return {
+        code: hours + minutes,
+        display: `${dateDisplay} ${timeDisplay}`
     };
 }
 
@@ -70,63 +69,57 @@ updateTime();
 // Refresh the time display every minute
 setInterval(updateTime, 60000);
 
-// Function to stop all audio and reset states
+// Stop all currently playing audio
 function stopAllAudio() {
     if (currentAudio) {
         currentAudio.pause();
-        currentAudio.currentTime = 0; // Reset the audio
-        currentAudio = null; // Clear the current audio reference
+        currentAudio.currentTime = 0;
+        currentAudio = null;
     }
 }
 
-// Function to handle correct code entry
+// Handle correct code entry
 function handleCorrectCode() {
-    // Stop any currently playing audio (including wrong sound if it is playing)
-    stopAllAudio(); 
+    stopAllAudio();
 
-    // Transition to the main content
     landingPage.style.transform = 'translateX(-100vw)';
     setTimeout(() => {
         landingPage.classList.add('hidden');
         mainContent.style.display = 'flex';
         wrongSound.pause();
 
-        // Play zer0s_menu.mp3 after correct code, if not already playing
         if (!isAudioPlaying(zer0sMenuSound)) {
-            zer0sMenuSound.play().catch((err) => {
-                console.warn("Audio playback blocked for Zer0S menu:", err);
-                soundWarning.style.display = 'block'; // Show the sound warning message
-            });
-            currentAudio = zer0sMenuSound; // Track zer0s menu audio
-            setupAudio(zer0sMenuSound); // Set up event listener for when the audio ends
- // Show terminal after the zer0sMenuSound ends
+            zer0sMenuSound.play()
+                .catch((err) => {
+                    console.warn('Audio playback blocked for Zer0S menu:', err);
+                    soundWarning.style.display = 'block';
+                });
+            currentAudio = zer0sMenuSound;
+            setupAudio(zer0sMenuSound);
+
+            // Show terminal after the Zer0S menu sound ends
             zer0sMenuSound.addEventListener('ended', () => {
-                terminalB.style.display = "block"; // Ensure it's visible
-                setTimeout(() => {
-                    terminalB.classList.add("visible"); // Trigger the slide-in animation
-                }, 10); // Short delay to trigger CSS transition
+                terminalB.style.display = 'block';
+                setTimeout(() => terminalB.classList.add('visible'), 10);
             });
-         }
-         
-    }, 600); // Matches the CSS transition time
+        }
+    }, 600);
 }
 
-// Function to handle wrong code entry
+// Handle wrong code entry
 function handleWrongCode() {
-    // Stop any currently playing audio (including welcome or zer0s menu)
     stopAllAudio();
 
-    // Show red screen for wrong code
     landingPage.style.transform = 'translateX(100vw)';
 
-    // Play the wrong sound, if not already playing
     if (!isAudioPlaying(wrongSound)) {
-        wrongSound.play().catch((err) => {
-            console.warn("Audio playback blocked for wrong code:", err);
-            soundWarning.style.display = 'block'; // Show the sound warning message
-        });
-        currentAudio = wrongSound; // Track wrong sound
-        setupAudio(wrongSound); // Set up event listener for when the audio ends
+        wrongSound.play()
+            .catch((err) => {
+                console.warn('Audio playback blocked for wrong code:', err);
+                soundWarning.style.display = 'block';
+            });
+        currentAudio = wrongSound;
+        setupAudio(wrongSound);
     }
 
     setTimeout(() => {
@@ -135,17 +128,16 @@ function handleWrongCode() {
             wrongPage.style.display = 'none';
             landingPage.style.transform = 'translateX(0)';
             codeInput.value = '';
-            // Reset current audio to null after wrong entry
             currentAudio = null;
-        }, 1500); // Delay before returning to landing page
+        }, 1500);
     }, 600);
 }
 
 // Check input against the dynamic code
 codeInput.addEventListener('input', () => {
     if (codeInput.value === correctCode) {
-        handleCorrectCode(); // Handle correct code
+        handleCorrectCode();
     } else if (codeInput.value.length === 4) {
-        handleWrongCode(); // Handle wrong code
+        handleWrongCode();
     }
 });

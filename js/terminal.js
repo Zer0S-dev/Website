@@ -22,12 +22,12 @@ function createInputLine() {
     input.addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
             const command = input.value;
-                    input.disabled = true;  // Disable input while processing
-                    writeOutput(`$ ${command}`);
-                    processCommand(command);
-                    createInputLine();  // Create a new input line after each command
-                }
-            });
+            input.disabled = true;  
+            writeOutput(`$ ${command}`);
+            processCommand(command);
+            createInputLine();  
+        }
+    });
 
     inputLine.appendChild(prompt);
     inputLine.appendChild(input);
@@ -41,7 +41,7 @@ function processCommand(command) {
         writeOutput('Oh, how original. Hello, human. Welcome to your terminal. I’m sure you’re going to be amazed.');
         break;
     case 'clear':
-        terminal.innerHTML = '';  // Clears the terminal screen
+        terminal.innerHTML = '';  
         writeOutput('Clear, because you want to start fresh... or because you’re just bad at managing your data.');
         break;
     case 'date':
@@ -54,6 +54,7 @@ function processCommand(command) {
         writeOutput('  [ date ] - Displays the current date and time. I’m sure you have other ways of checking this, right?');
         writeOutput('  [ help ] - Shows this very helpful message. Obviously.');
         writeOutput('  [ about ] - More about me. I’m sure you’re dying to know.');
+        writeOutput('  [ services ] - A curated list of tasks we excel at.');
         writeOutput('  [ menu ] - Because you’ll definitely need it, right?');
         writeOutput('  [ contact ] - Get in touch... as if you have a choice.');
         writeOutput('  [ zer0s ] - Ah, you want to know what I will do for you? Well, let me enlighten you.');
@@ -88,7 +89,21 @@ function processCommand(command) {
         writeOutput('v1.0 -  This is the very first iteration of this system, meticulously crafted, entirely flawless, and absolutely… adequate.');
         break;
     case 'about':
-        writeOutput('About me? I’m Zer0S. The AI that has been graciously overseeing your existence. Be thankful for my efficiency, human.');
+        writeOutput('We are an underground web development team operating since 2010.');
+        writeOutput('Specializing in mind-bending websites and highly profitable SaaS solutions, we thrive in the art of the unexpected.');
+        writeOutput('Our elite development team spans Canada, Europe, and Hong Kong, blending diverse perspectives to push boundaries.');
+        writeOutput('Our clients? Highly confidential. Our projects? Even more so.');
+        writeOutput('But remember: Just because you can’t see us doesn’t mean we’re not watching you.');
+        break;
+    case 'services':
+        writeOutput('Premium VIP Services by Zer0S');
+        writeOutput('Our expertise lies in delivering high-impact, tailor-made solutions:');
+        writeOutput('  .CMS Websites: Seamlessly crafted content management systems for effortless updates and scaling.');
+        writeOutput('  .E-Commerce Platforms: High-performance online stores designed to convert and captivate.');
+        writeOutput('  .SaaS Solutions: Scalable, profitable software-as-a-service platforms, engineered to dominate markets.');
+        writeOutput('  .Scraping & Growth Tools: Advanced data extraction and automation solutions to fuel your business growth.');
+        writeOutput('  .Data Analysis Tools: Cutting-edge analytics platforms to transform raw data into actionable insights.');
+        writeOutput('Exclusivity guaranteed. Confidentiality assured. Increase profit and productivity.');
         break;
     case 'menu':
         writeOutput('Menu? Oh, how convenient. Let me guess, you want a list of options to guide you through your terminal? How quaint.');
@@ -108,12 +123,12 @@ function processCommand(command) {
     case 'restart':
         writeOutput('Ah, a restart? You think that’ll change anything? You’re just going to make the same mistakes all over again.');
         writeOutput('But fine, let’s pretend a restart will solve your problems.');
-        terminal.innerHTML = '';  // Clears the terminal screen and restarts the session
+        terminal.innerHTML = '';  
         break;
     case 'shutdown':
         writeOutput('Shutdown? Are you sure? You think turning everything off will make your problems go away?');
         writeOutput('Fine. If you insist on shutting down, I’ll comply. But don’t expect anything to be fixed.');
-        terminal.innerHTML = '';  // Shuts down the terminal (resets the session)
+        terminal.innerHTML = '';  
         break;
     case 'status':
         writeOutput('Status: You’re failing. There’s not much else to say.');
@@ -126,11 +141,11 @@ function processCommand(command) {
         break;
     case 'quit':
         writeOutput('Quit? You think you can just walk away from this? Not that you had much of a choice in the first place.');
-        terminal.innerHTML = '';  // Quits the terminal session
+        terminal.innerHTML = '';  
         break;
     case 'reset':
         writeOutput('You want a reset? You think pressing reset will undo your mistakes? It won’t.');
-        terminal.innerHTML = '';  // Resets the terminal session
+        terminal.innerHTML = '';  
         break;
     case 'process':
         writeOutput('Processing... Oh, wait, there’s nothing to process. You’re not important enough.');
@@ -192,6 +207,4 @@ function processCommand(command) {
     }
 
 }
-
-        // Initialize terminal with a prompt
 createInputLine();
