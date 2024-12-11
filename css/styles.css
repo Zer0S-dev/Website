@@ -37,7 +37,15 @@ img.logo {
     z-index: 1000;
     opacity: 1;
     transition: opacity 2s ease, visibility 1s ease;
+    flex-direction: column;
 }
+.warning {
+    width: 300px;
+    border: 4px solid #ffca28;
+    padding: 10px;
+    margin-bottom: 80px;
+}
+
 
 #enter-overlay.hidden {
     opacity: 0;
@@ -86,7 +94,9 @@ img.logo {
     font-size: 4rem;
     font-weight: bold;
 }
-
+strong {
+    color: #ffca28;
+}
 /* Code Input Container */
 .code-container {
  text-align: center;

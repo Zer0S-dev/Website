@@ -86,7 +86,7 @@ function processCommand(command) {
         writeOutput('  [ changelog ] - A record of all the insignificant tweaks and modifications made to this already perfect system.');
         break;
     case 'changelog':
-        writeOutput('v1.0 -  This is the very first iteration of this system, meticulously crafted, entirely flawless, and absolutely… adequate.');
+        writeOutput('v1.1 -  This is the very first iteration of this system, meticulously crafted, entirely flawless, and absolutely… adequate.');
         break;
     case 'about':
         writeOutput('We are an underground web development team operating since 2010.');
