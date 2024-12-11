@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zer0S - Official Website</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+      <!-- Fully created by Zer0S Dev team, a SPHER L.T.D Trademark                                                                                                     
+   **********************                                              **###**            ****##****   *  
+   ##%%           #***#%                                            **#%     %**        **#%       %##*#  
+   #             ***##                                             **#%       ##*      **#           %##  
+   #            ***#%                                             **##         #**    #**#            %#  
+              ****#%                                             ***##         #***   ##***            #  
+             ***##               **###****        ***#  *****    ***#          ##**#   ##****             
+            ***#%              *#      %#***   %%%#**# #%%####   #**#   ****   ##**#    %##******         
+          ***##%             **#        ##***     #**#%          #**#  ******* ##**#      %%#*******      
+         ***#%               ***************#     #*##           #**#  ##***#% #**##         %%##******   
+        ***#%               #*##                  #**#           #**#   %%%%   #**##            @%##***** 
+      ***##%                #**#                  #**#           #**#          #**#                 %#****
+     ***#%                  ##**                  #**#           %#**#         #*##    *             %#**#
+   ****#%               *    #***           #     #**#            %#**        **##     *              #*##
+  ***##%               *#    %#****       *#      #**#             %#**       *##      #**            *## 
+ ***##              ***##      %#********#%       ****              %#**     *#%       ##***        **#%  
+%%%%%%%%%%%%%%%%%%%%%%%%         %%####%%      #%%%%%%%%#              %#**#%          %   %%%#***#%%%    
+-->
+
+    <button id="enter-button" style="display:none;">Enter</button>
+    <audio id="background-audio" src="audio/zer0s_background_audio.mp3" autoplay></audio>
+    <div id="main-content" class="page">
+        <!-- DISPLAY Zer0S -->
+        <div class="zer0s-container">
+            <div class="zer0s-eye">
+                <div class="mechanical-lines"></div>
+                <div class="eye-glow"></div>
+                <div class="red-dot"></div>
+            </div>
+            <audio id="audio" src="../audio/zer0s_menu.mp3"></audio>
+        </div>
+        <!-- DISPLAY Terminal -->
+        <div id="terminal" style="display: none;">Zer0S v1.1</div>
+
+    </div>
+    <footer>
+       <div id="current-time-display">Zer0S // Journey: --:--</div><button id="playPauseButton"><i class="fas fa-pause"></i></button>
+   </footer>
+   <script type="text/javascript">
+     document.addEventListener('DOMContentLoaded', function () {
+        var enterButton = document.getElementById('enter-button');
+        var enterOverlay = document.getElementById('enter-overlay');
+        var backgroundAudio = document.getElementById('background-audio');
+
+            // Set audio volume
+        backgroundAudio.volume = 0.10;
+
+            // Handle Enter button click
+        enterButton.addEventListener('click', function () {
+            enterOverlay.classList.add('hidden');
+            backgroundAudio.play().catch(function (error) {
+                console.error('Error playing audio:', error);
+            });
+        });
+
+        var playPauseButton = document.getElementById('playPauseButton');
+        var playPauseIcon = playPauseButton.querySelector('i');
+
+        playPauseButton.addEventListener('click', function () {
+            if (backgroundAudio.paused) {
+                backgroundAudio.play().then(() => {
+                    playPauseIcon.className = 'fas fa-pause';
+                }).catch(function (error) {
+                    console.error('Error playing audio:', error);
+                });
+            } else {
+                backgroundAudio.pause();
+                playPauseIcon.className = 'fas fa-play';
+            }
+        });
+
+        backgroundAudio.addEventListener('ended', function () {
+            playPauseIcon.className = 'fas fa-play';
+        });
+    });
+</script>
+<script src="../js/zer0s_ai.js"></script>
+<script src="../js/terminal.js"></script>
+<script src="../js/script.js"></script>
+</body>
+</html>
