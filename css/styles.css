@@ -22,6 +22,11 @@ body, html {
 img.logo {
     width: 200px;
 }
+video.bye {
+        background: #000;
+    width: 100%;
+    height: 100%;
+}
 /*ENTER PAGE*/
 #enter-overlay {
     position: fixed;
@@ -159,11 +164,62 @@ strong {
     border: 1px solid #333;
     margin-bottom: 25px;
 }
+#terminal.dark-angry {
+    background: #5D0E41;
+    color: #FF76CE;
+    border: 1px solid #FFB5DA;
+}
 
 #terminal.visible {
   bottom: 20px; /* Final position visible on the screen */
   opacity: 1;
 }
+/* Loading Effect */
+.loading {
+    font-family: monospace;
+    color: #44ff44;
+    font-weight: bold;
+    animation: blink 0.7s steps(2, start) infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* Glitch Effect */
+.glitch {
+    color: red;
+    font-weight: bold;
+    animation: glitch-animation 0.2s infinite;
+}
+
+@keyframes glitch-animation {
+    0% { transform: translate(1px, -1px); }
+    25% { transform: translate(-1px, 1px); }
+    50% { transform: translate(2px, -2px); }
+    75% { transform: translate(-2px, 2px); }
+    100% { transform: translate(1px, -1px); }
+}
+#main-content.dark-angry {
+    background-color: #FF3EA5;
+    color: #ff4444;
+    transition: background-color 0.5s, color 0.5s;
+}
+img.expe {
+  width: 100%;
+    height: 100%;
+    z-index: 99999;
+    position: absolute;
+}
+input {
+    caret-color: white;
+    animation: cursor-flicker 0.8s infinite steps(2, start);
+}
+
+@keyframes cursor-flicker {
+    50% { caret-color: transparent; }
+}
+
 .output {
     margin-bottom: 5px;
 }

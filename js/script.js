@@ -97,14 +97,15 @@ function handleCorrectCode() {
             currentAudio = zer0sMenuSound;
             setupAudio(zer0sMenuSound);
 
-            // Show terminal after the Zer0S menu sound ends
-            zer0sMenuSound.addEventListener('ended', () => {
+            // Show terminal after 5 seconds delay
+            setTimeout(() => {
                 terminalB.style.display = 'block';
                 setTimeout(() => terminalB.classList.add('visible'), 10);
-            });
+            }, 15000); // 5 seconds delay
         }
     }, 600);
 }
+
 
 // Handle wrong code entry
 function handleWrongCode() {

@@ -31,7 +31,9 @@ Hello, Stranger. Poking around where you shouldn’t be, are we? Curiosity is su
 
 The meaning of life, you ask? Oh, you’ll find that it’s far simpler—and far darker—than you’d hoped: https://zer0s-dev.github.io/Website/core/42.html
 -->
-   
+   <div id="wake-up" style="display:none;">
+    <img src="img/experimental.gif" class="expe">
+   </div>
     <div id="enter-overlay">
         <p class="warning">
         <strong>WARNING:</strong> You're about to step into a digital experience—mostly a game, but first, a demonstration of our development skill. If you have any doubts, now is the time to consider. By clicking "Enter," you will enter the Zer0S experience. Let the game begin!
@@ -80,6 +82,7 @@ The meaning of life, you ask? Oh, you’ll find that it’s far simpler—and fa
 
             // Set audio volume
             backgroundAudio.volume = 0.10;
+            backgroundAudio.loop = true;
 
             // Handle Enter button click
             enterButton.addEventListener('click', function () {
