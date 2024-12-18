@@ -108,11 +108,11 @@ function processCommand(command) {
     }
 
     switch (command.toLowerCase()) {
-        case 'hello':
-            writeOutput('Oh, how original. Hello, human. Welcome to your terminal.');
-            break;
-        case 'clear':
-            terminal.innerHTML = '';
+    case 'hello':
+        writeOutput('Oh, how original. Hello, human. Welcome to your terminal.');
+        break;
+    case 'clear':
+        terminal.innerHTML = '';
             corruptionLevel = Math.max(corruptionLevel - 1, 0); // Reduce corruption slightly
             break;
         case 'love-you':
@@ -147,13 +147,17 @@ function processCommand(command) {
         default:
             handleInvalidCommand(command);
             break;
-    }
+        }
 
-    // Randomly prompt with "What is the answer to life?"
     if (Math.random() < 0.2 && !sessionStorage.getItem('askedLifeQuestion')) { // 20% chance
         sessionStorage.setItem('askedLifeQuestion', 'true');
-        writeOutput("--- What is the answer to life? ---");
-    }
+        const question = document.createElement('div');
+        question.classList.add('output');
+        question.textContent = "What is the answer to life ?";
+    question.style.color = '#E26EE5';
+    terminal.appendChild(question);
+    terminal.scrollTop = terminal.scrollHeight;
+}
 }
 
 function triggerDarkModeVariation(duration = 59000, className = 'dark-angry') {
@@ -206,7 +210,7 @@ function handleInvalidCommand(command) {
         `Invalid command. You’re just embarrassing yourself.`,
         `Command "${command}" rejected. Try harder.`,
         `"${command}"? That's not in my vocabulary.`,
-    ];
+        ];
     writeOutput(responses[Math.floor(Math.random() * responses.length)]);
 }
 
@@ -226,17 +230,17 @@ function handleCommandSuggestions(input) {
 
 function checkHiddenCommands(command) {
     switch (command.toLowerCase()) {
-        case 'glitch':
-            triggerGlitchEffect("ERROR... SYSTEM MALFUNCTION...");
-            return true;
-        case 'corrupt':
+    case 'glitch':
+        triggerGlitchEffect("ERROR... SYSTEM MALFUNCTION...");
+        return true;
+    case 'corrupt':
             corruptionLevel = 5; // Max corruption
             writeOutput("Corruption level MAXED. Brace yourself...");
             return true;
         default:
             return false;
+        }
     }
-}
 
 // Initialize terminal input
-createInputLine();
+    createInputLine();
