@@ -405,4 +405,8 @@ button#playPauseButton {
   .red {
     font-size: 2rem;
 }
+
+#terminal {
+  width: 85%;
+}
 }
