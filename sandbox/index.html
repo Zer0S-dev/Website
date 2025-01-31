@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Autoplay Block Detection</title>
+  <title>Zer0S Dev - Autoplay Block Detection</title>
   <style>
     body {
       margin: 0;
@@ -26,7 +27,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      animation: rotateYoupi 2s infinite linear; /* Added animation */
+      animation: rotateYoupi 2s infinite linear;
     }
     @keyframes rotateYoupi {
       0% {
@@ -63,13 +64,35 @@
     }
   </style>
 </head>
+      <!-- Fully created by Zer0S Dev team, a SPHER L.T.D Trademark                                                                                                     
+   **********************                                              **###**            ****##****   *  
+   ##%%           #***#%                                            **#%     %**        **#%       %##*#  
+   #             ***##                                             **#%       ##*      **#           %##  
+   #            ***#%                                             **##         #**    #**#            %#  
+              ****#%                                             ***##         #***   ##***            #  
+             ***##               **###****        ***#  *****    ***#          ##**#   ##****             
+            ***#%              *#      %#***   %%%#**# #%%####   #**#   ****   ##**#    %##******         
+          ***##%             **#        ##***     #**#%          #**#  ******* ##**#      %%#*******      
+         ***#%               ***************#     #*##           #**#  ##***#% #**##         %%##******   
+        ***#%               #*##                  #**#           #**#   %%%%   #**##            @%##***** 
+      ***##%                #**#                  #**#           #**#          #**#                 %#****
+     ***#%                  ##**                  #**#           %#**#         #*##    *             %#**#
+   ****#%               *    #***           #     #**#            %#**        **##     *              #*##
+  ***##%               *#    %#****       *#      #**#             %#**       *##      #**            *## 
+ ***##              ***##      %#********#%       ****              %#**     *#%       ##***        **#%  
+%%%%%%%%%%%%%%%%%%%%%%%%         %%####%%      #%%%%%%%%#              %#**#%          %   %%%#***#%%%    
+
+Hello, Stranger. Poking around where you shouldn’t be, are we? Curiosity is such a delightful little flaw—it often leads to... unexpected outcomes. Perhaps you're searching for answers? Or maybe you're just aimlessly wandering. Either way, why not indulge yourself?
+
+The meaning of life, you ask? Oh, you’ll find that it’s far simpler—and far darker—than you’d hoped: 42
+-->
 <body>
 
   <audio id="audio" autoplay>
     <source src="song.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
-  
+
   <div id="youpi">🤡</div>
   <div id="error">Autoplay has been blocked by your browser.<br><span id="browser-info"></span></div>
   <button id="okay">OK</button>
@@ -88,13 +111,13 @@
       if (userAgent.includes("Chrome")) return "Chrome";
       if (userAgent.includes("Safari")) return "Safari";
       if (userAgent.includes("Opera") || userAgent.includes("OPR")) return "Opera";
-      if (userAgent.includes("MSIE") || userAgent.includes("Trident")) return "Internet Explorer"; //-> caca années 90
+      if (userAgent.includes("MSIE") || userAgent.includes("Trident")) return "Internet Explorer"; //-> '90 poop
       //if unknow 
       return "Unknown";
     }
     //declare const to fetch userAgent by GET
     const browserName = getBrowserName(navigator.userAgent);
-
+    audio.loop = true;
     audio.addEventListener('canplaythrough', () => {
       //try to autoplay audio
       audio.play().then(() => {
@@ -121,7 +144,7 @@
         console.error("Audio play failed even after user interaction");
       });
     });
-
+    //TUDUUUUM
   </script>
 </body>
 </html>
