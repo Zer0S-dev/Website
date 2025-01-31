@@ -92,9 +92,10 @@ The meaning of life, you ask? Oh, you’ll find that it’s far simpler—and fa
     <source src="song.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
-
+  <!-- dark pattern froom space-->
   <div id="youpi">🤡</div>
   <div id="error">Autoplay has been blocked by your browser.<br><span id="browser-info"></span></div>
+  <!-- it's a trap -->
   <button id="okay">OK</button>
 
   <script>
@@ -106,12 +107,12 @@ The meaning of life, you ask? Oh, you’ll find that it’s far simpler—and fa
     const browserInfo = document.getElementById('browser-info');
     //detect browser
     function getBrowserName(userAgent) {
-      if (userAgent.includes("Firefox")) return "Firefox";
+      if (userAgent.includes("Firefox")) return "Firefox"; //-> CCC
       if (userAgent.includes("Edg/")) return "Edge"; //-> caca
-      if (userAgent.includes("Chrome")) return "Chrome";
-      if (userAgent.includes("Safari")) return "Safari";
-      if (userAgent.includes("Opera") || userAgent.includes("OPR")) return "Opera";
-      if (userAgent.includes("MSIE") || userAgent.includes("Trident")) return "Internet Explorer"; //-> '90 poop
+      if (userAgent.includes("Chrome")) return "Chrome"; //-> hipster
+      if (userAgent.includes("Safari")) return "Safari"; //-> Bbourgeois
+      if (userAgent.includes("Opera") || userAgent.includes("OPR")) return "Opera"; //-> marginal
+      if (userAgent.includes("MSIE") || userAgent.includes("Trident")) return "Internet Explorer"; //-> boomer
       //if unknow 
       return "Unknown";
     }
