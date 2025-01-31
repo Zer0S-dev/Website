@@ -92,7 +92,7 @@ The meaning of life, you ask? Oh, you’ll find that it’s far simpler—and fa
     <source src="song.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
-  <!-- dark pattern froom space-->
+  <!-- dark pattern from space-->
   <div id="youpi">🤡</div>
   <div id="error">Autoplay has been blocked by your browser.<br><span id="browser-info"></span></div>
   <!-- it's a trap -->
@@ -110,10 +110,10 @@ The meaning of life, you ask? Oh, you’ll find that it’s far simpler—and fa
       if (userAgent.includes("Firefox")) return "Firefox"; //-> CCC
       if (userAgent.includes("Edg/")) return "Edge"; //-> caca
       if (userAgent.includes("Chrome")) return "Chrome"; //-> hipster
-      if (userAgent.includes("Safari")) return "Safari"; //-> Bbourgeois
+      if (userAgent.includes("Safari")) return "Safari"; //-> bourgeois
       if (userAgent.includes("Opera") || userAgent.includes("OPR")) return "Opera"; //-> marginal
       if (userAgent.includes("MSIE") || userAgent.includes("Trident")) return "Internet Explorer"; //-> boomer
-      //if unknow 
+      //if unknown GTFO
       return "Unknown";
     }
     //declare const to fetch userAgent by GET
@@ -128,12 +128,13 @@ The meaning of life, you ask? Oh, you’ll find that it’s far simpler—and fa
       }).catch(() => {
         //FAIL
         console.log("Autoplay blocked");
+        //write the u-a within span
         browserInfo.textContent = `Browser detected: ${browserName}`;
         errorDiv.style.display = 'block';
         okayButton.style.display = 'block';
       });
     });
-    //listen button click to play audio even if fail
+    //listen button click to play audio if error
     okayButton.addEventListener('click', () => {
       //WIN
       audio.play().then(() => {
