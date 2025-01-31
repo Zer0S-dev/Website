@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autoplay Block Detection</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #9BEC00;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    #youpi, #error {
+      display: none;
+      font-size: 5rem;
+      font-weight: bold;
+      text-align: center;
+    }
+    #youpi {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: rotateYoupi 2s infinite linear; /* Added animation */
+    }
+    @keyframes rotateYoupi {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+    #error {
+      background: #f00;
+      color: #000;
+      padding: 20px;
+      height: 100vh;
+    }
+    #okay {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px 40px;
+      font-size: 40px;
+      background-color: #fff;
+      color: #000;
+      border: 10px solid #000;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #okay:hover {
+      background-color: #000;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="audio" autoplay>
+    <source src="song.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+  
+  <div id="youpi">🤡</div>
+  <div id="error">Autoplay has been blocked by your browser.<br><span id="browser-info"></span></div>
+  <button id="okay">OK</button>
+
+  <script>
+    //declare and fetch items
+    const audio = document.getElementById('audio');
+    const errorDiv = document.getElementById('error');
+    const youpiDiv = document.getElementById('youpi');
+    const okayButton = document.getElementById('okay');
+    const browserInfo = document.getElementById('browser-info');
+    //detect browser
+    function getBrowserName(userAgent) {
+      if (userAgent.includes("Firefox")) return "Firefox";
+      if (userAgent.includes("Edg/")) return "Edge"; //-> caca
+      if (userAgent.includes("Chrome")) return "Chrome";
+      if (userAgent.includes("Safari")) return "Safari";
+      if (userAgent.includes("Opera") || userAgent.includes("OPR")) return "Opera";
+      if (userAgent.includes("MSIE") || userAgent.includes("Trident")) return "Internet Explorer"; //-> caca années 90
+      //if unknow 
+      return "Unknown";
+    }
+    //declare const to fetch userAgent by GET
+    const browserName = getBrowserName(navigator.userAgent);
+
+    audio.addEventListener('canplaythrough', () => {
+      //try to autoplay audio
+      audio.play().then(() => {
+        //WIN
+        console.log("Autoplay allowed");
+        youpiDiv.style.display = 'block';
+      }).catch(() => {
+        //FAIL
+        console.log("Autoplay blocked");
+        browserInfo.textContent = `Browser detected: ${browserName}`;
+        errorDiv.style.display = 'block';
+        okayButton.style.display = 'block';
+      });
+    });
+    //listen button click to play audio even if fail
+    okayButton.addEventListener('click', () => {
+      //WIN
+      audio.play().then(() => {
+        youpiDiv.style.display = 'block';
+        errorDiv.style.display = 'none';
+        okayButton.style.display = 'none';
+      }).catch(() => {
+        //FAIL
+        console.error("Audio play failed even after user interaction");
+      });
+    });
+
+  </script>
+</body>
+</html>
